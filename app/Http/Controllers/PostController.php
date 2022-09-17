@@ -15,14 +15,19 @@ class PostController extends Controller
 
     public function index()
     {
-        $request = Post::find();
-        return $request;
+
+        $post = Post::all();
+
+        return response()->json($post);
+
+       // $request = Post::find();
+      //  return $request;
     }
 
-    public function getById($id){
+    //public function getById($id){
 
-        return Post::find($id);
-    }
+       // return Post::find($id);
+  //  }
 
     //criar
     public function store(Request $request)
@@ -48,7 +53,9 @@ class PostController extends Controller
     //mostra um item
     public function show(Request $request)
     {
-        //
+        $request = $request->only([1, 3]);
+
+        return response()->json($request);
     }
 
 

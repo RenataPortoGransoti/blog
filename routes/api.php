@@ -13,3 +13,4 @@ Route::post('/criarPost', [PostController::class, 'store']);
 
 Route::get('/posts', [PostController::class, 'index']);
 
+Route::get('/showPost', [PostController::class, 'show']);
