@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Http\Requests\StoreCommentRequest;
@@ -9,79 +10,50 @@ use App\Http\Requests\UpdateCommentRequest;
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   //mostra todos
     public function index()
     {
-        //
+        $comment = Comment::all();
+
+        return response()->json($comment);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+   //cria comentário
+    public function store(Request $request, comment $post)
     {
-        //
+        $comment = new Comment;
+
+        $comment->usuario = $request->usuario;
+        $comment->descricao = $request->descricao;
+
+        $comment->save();
+
+         return response()->json(["message" => "comment criado com sucesso. "], 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCommentRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreCommentRequest $request)
+   //mostrar um comentário
+    public function show(Request $request, $id)
     {
-        //
+        return response()->json(Comment::find($id));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Comment $comment)
+
+   //atualiza um comentário
+    public function update(Request $request, $id)
     {
-        //
+        $comment=Comment::find($id);
+        $comment->usuario = $request["titulo"];
+        $comment->descricao = $request["descricao"];
+        $comment->updated_at = date("Y-m-dTH:i:s");
+        $comment->save();
+        return $comment;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comment $comment)
+    //deleta um comentário
+    public function destroy(Request $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCommentRequest  $request
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateCommentRequest $request, Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Comment $comment)
-    {
-        //
+        Comment::where('id',$request->id)->delete();
+          return response()->json(true);
     }
 }

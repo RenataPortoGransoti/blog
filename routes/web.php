@@ -18,6 +18,14 @@ Route::get('/', function () {
 });
 
 
-Route::get('/posts', 'PostController@index');
+Route::get('/mostrarTodos', 'PostController@index');
 Route::post('/criarPost', 'PostController@store');
-Route::get('/showPost', 'PostController@show');
+Route::get('/post', 'PostController@show');
+Route::put('/post', 'PostController@edit');
+Route::delete('/deletePost', 'PostController@destroy');
+
+Route::get('/todosComentarios', 'CommentController@index');
+Route::post('/post/{id}/criarComment', 'CommentController@store');
+Route::get('/showPost/{id}/showComment{id}', 'CommentController@show');
+Route::put('/editComment', 'CommentController@edit');
+Route::delete('/deleteComment', 'CommentController@destroy');

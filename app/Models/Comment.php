@@ -18,8 +18,8 @@ class Comment extends Model
 
 
 
-    public function posts(): BelongsTo
+    public function posts()
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(Post::class); //um comentario pertence a um post
     }
 }
