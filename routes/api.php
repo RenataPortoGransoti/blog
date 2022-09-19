@@ -10,17 +10,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //Rotas do Post
-Route::post('/criarPost', [PostController::class, 'store']);
+Route::post('/criarPost', [PostController::class, 'store']);//criar post
 
-Route::get('/mostrarTodos', [PostController::class, 'index']);
+Route::get('/mostrarTodos', [PostController::class, 'index']); //mostrar todos
 
-Route::get('/post/{id}', [PostController::class, 'show']);
+Route::get('/post/{id}', [PostController::class, 'show']); //mostrar post
 
-Route::get('/post/alguns/{nome}', [PostController::class, 'showOnly']);//ver alguns comentários
+Route::get('/post/alguns/{nome}', [PostController::class, 'showOnly']);//ver alguns posts
 
-Route::put('/post/{id}', [PostController::class, 'edit']);
+Route::put('/post/{id}', [PostController::class, 'edit']); //editar post
 
-Route::delete('/deletePost', [PostController::class, 'destroy']);
+Route::delete('/deletePost', [PostController::class, 'destroy']); //deletar post
 
 //Rotas do Comment
 Route::post('/post/{id}/criarComment', [CommentController::class, 'store']); //criar comentário
@@ -28,8 +28,6 @@ Route::post('/post/{id}/criarComment', [CommentController::class, 'store']); //c
 Route::get('/post/{id}/todosComentarios', [CommentController::class, 'index']); //ver todos comentários
 
 Route::get('/comment/{id}', [CommentController::class, 'show']);//ver um comentário
-
-
 
 Route::put('comment/{id}', [CommentController::class, 'update']);//atualizar comentário
 

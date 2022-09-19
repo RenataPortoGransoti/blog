@@ -49,7 +49,7 @@ class PostController extends Controller
     public function showOnly(Request $request, $nome)
     {
         $post=Post::where('usuario', $nome)->get();
-        $post = $post->only([8,10]);
+        $post = $post->only([8,10,12]);
         return response()->json($post);
     }
 
