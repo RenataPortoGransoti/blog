@@ -20,12 +20,13 @@ class CommentController extends Controller
 
 
    //cria comentário
-    public function store(Request $request, comment $post)
+    public function store(Request $request, comment $comment)
     {
         $comment = new Comment;
 
         $comment->usuario = $request->usuario;
         $comment->descricao = $request->descricao;
+        $comment->fk_postagem_id = $request->id;
 
         $comment->save();
 
@@ -43,9 +44,9 @@ class CommentController extends Controller
     public function update(Request $request, $id)
     {
         $comment=Comment::find($id);
-        $comment->usuario = $request["titulo"];
+        $comment->usuario = $request["usuario"];
         $comment->descricao = $request["descricao"];
-        $comment->updated_at = date("Y-m-dTH:i:s");
+      //  $comment->updated_at = date("Y-m-dTH:i:s");
         $comment->save();
         return $comment;
     }

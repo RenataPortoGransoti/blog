@@ -45,6 +45,13 @@ class PostController extends Controller
         return response()->json(Post::find($id));
     }
 
+    //mostra alguns
+    public function showOnly(Request $request, $nome)
+    {
+        $post=Post::where('usuario', $nome)->get();
+        $post = $post->only([8,10]);
+        return response()->json($post);
+    }
 
     //editar
     public function edit(Request $request, $id){

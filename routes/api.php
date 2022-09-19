@@ -16,17 +16,21 @@ Route::get('/mostrarTodos', [PostController::class, 'index']);
 
 Route::get('/post/{id}', [PostController::class, 'show']);
 
+Route::get('/post/alguns/{nome}', [PostController::class, 'showOnly']);//ver alguns comentários
+
 Route::put('/post/{id}', [PostController::class, 'edit']);
 
 Route::delete('/deletePost', [PostController::class, 'destroy']);
 
 //Rotas do Comment
-Route::post('/post/{id}/criarComment', [CommentController::class, 'store']);
+Route::post('/post/{id}/criarComment', [CommentController::class, 'store']); //criar comentário
 
-Route::get('/post/{id}/todosComentarios', [CommentController::class, 'index']);
+Route::get('/post/{id}/todosComentarios', [CommentController::class, 'index']); //ver todos comentários
 
-Route::get('/post/{id}/comment/{id_comment}', [CommentController::class, 'show']);
+Route::get('/comment/{id}', [CommentController::class, 'show']);//ver um comentário
 
-Route::put('/post/{id}/comment/{id_comment}', [CommentController::class, 'update']);
 
-Route::delete('/deleteComment', [CommentController::class, 'destroy']);
+
+Route::put('comment/{id}', [CommentController::class, 'update']);//atualizar comentário
+
+Route::delete('/comment/deletar/{id}', [CommentController::class, 'destroy']);//deletar comentário

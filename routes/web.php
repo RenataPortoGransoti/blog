@@ -24,8 +24,9 @@ Route::get('/post', 'PostController@show');
 Route::put('/post', 'PostController@edit');
 Route::delete('/deletePost', 'PostController@destroy');
 
-Route::get('/todosComentarios', 'CommentController@index');
-Route::post('/post/{id}/criarComment', 'CommentController@store');
-Route::get('/showPost/{id}/showComment{id}', 'CommentController@show');
+Route::get('/todosComentarios', 'CommentController@index'); //ok
+Route::post('/post/{id}/criarComment', 'CommentController@store'); //ok
+Route::get('/post/{id}/comment/{id_comment}', 'CommentController@show');
+Route::get('/comment/alguns', 'CommentController@show');
 Route::put('/editComment', 'CommentController@edit');
-Route::delete('/deleteComment', 'CommentController@destroy');
+Route::delete('/post/{id}/comment/{id_comment}/deleteComment', 'CommentController@destroy');
